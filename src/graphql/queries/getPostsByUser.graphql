@@ -1,0 +1,10 @@
+query GetPostsByUser {
+  getPostsByUser {
+    id
+    title
+    bodySnippet
+    createdAt
+    updatedAt
+    authorId
+  }
+}

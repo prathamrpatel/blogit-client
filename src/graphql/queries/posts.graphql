@@ -1,0 +1,13 @@
+query Posts($take: Int!, $cursor: String) {
+  posts(take: $take, cursor: $cursor) {
+    posts {
+      id
+      title
+      bodySnippet
+      createdAt
+      updatedAt
+      authorId
+    }
+    hasMore
+  }
+}
