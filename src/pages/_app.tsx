@@ -5,7 +5,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { PaginatedPosts } from '../generated/graphql';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql',
+  uri: 'https://blogging-site-dfkeo4.herokuapp.com/graphql',
   credentials: 'include',
   cache: new InMemoryCache({
     typePolicies: {
