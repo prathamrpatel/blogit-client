@@ -18,7 +18,7 @@ const Index = ({}: IndexProps) => {
   }
 
   return (
-    <>
+    <Flex direction="column">
       <NavigationBar />
 
       <Flex direction="column" align="center">
@@ -44,7 +44,7 @@ const Index = ({}: IndexProps) => {
           </Button>
         ) : null}
       </Flex>
-    </>
+    </Flex>
   );
 };
 

@@ -5,7 +5,10 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { PaginatedPosts } from '../generated/graphql';
 
 const client = new ApolloClient({
-  uri: 'https://blogging-site-backend.herokuapp.com/graphql',
+  uri:
+    process.env.NODE_ENV === 'production'
+      ? 'https://blogging-site-backend.herokuapp.com/graphql'
+      : 'http://localhost:4000/graphql',
   credentials: 'include',
   cache: new InMemoryCache({
     typePolicies: {
