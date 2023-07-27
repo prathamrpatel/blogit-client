@@ -29,7 +29,7 @@ const Index: NextPage = ({}: IndexProps) => {
       {currentUserData?.currentUser ? (
         <Flex direction="column" align="center">
           {data.posts.posts.map((post) => (
-            <BlogCard post={post} key={post.id} />
+            <BlogCard post={post as any} key={post.id} />
           ))}
           {data.posts.hasMore ? (
             <Button

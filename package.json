@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "blogit-client",
   "scripts": {
     "dev": "next",
