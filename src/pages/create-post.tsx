@@ -3,14 +3,7 @@ import { Form, Formik } from 'formik';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { InputField } from '../components/InputField';
-import {
-  CurrentUserDocument,
-  CurrentUserQuery,
-  PostsDocument,
-  PostsQuery,
-  useCreatePostMutation,
-  useLoginMutation,
-} from '../generated/graphql';
+import { useCreatePostMutation } from '../generated/graphql';
 import { toErrorMap } from '../util/toErrorMap';
 import { useIsAuth } from '../util/useIsAuth';
 
@@ -63,15 +56,20 @@ const CreatePost = ({}: CreatePostProps) => {
             </Box>
 
             <Flex w="350px" mt="15px" justify="flex-end">
-              <Button
+              {/* <Button
                 colorScheme="blue"
                 isLoading={isSubmitting}
                 mr="5px"
                 onClick={() => console.log('Implement save in the future')}
               >
                 Save
-              </Button>
-              <Button colorScheme="blue" type="submit" isLoading={isSubmitting}>
+              </Button> */}
+              <Button
+                colorScheme="pink"
+                bgColor={'pink.400'}
+                type="submit"
+                isLoading={isSubmitting}
+              >
                 Post
               </Button>
             </Flex>

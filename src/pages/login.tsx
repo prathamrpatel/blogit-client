@@ -58,11 +58,21 @@ const Login = ({}: LoginProps) => {
               <InputField name="password" placeholder="Password" />
             </Box>
 
-            <Flex w="350px" mt="15px" justify="space-between">
-              <NextLink href="/register">
-                <Link>Don't have an account?</Link>
-              </NextLink>
-              <Button colorScheme="blue" type="submit" isLoading={isSubmitting}>
+            <Flex w="350px" mt="15px" justify="space-between" align="center">
+              <Link href="/register">
+                <Button variant={'link'} colorScheme={'blue'}>
+                  Don't have an account?
+                </Button>
+              </Link>
+              <Button
+                colorScheme="pink"
+                bg={'pink.400'}
+                _hover={{
+                  bg: 'pink.300',
+                }}
+                type="submit"
+                isLoading={isSubmitting}
+              >
                 Login
               </Button>
             </Flex>

@@ -8,8 +8,8 @@ export const DarkModeSwitch = () => {
   return (
     <IconButton
       icon={isDark ? <SunIcon /> : <MoonIcon />}
+      variant="ghost"
       aria-label="Toggle Theme"
-      colorScheme="blue"
       onClick={toggleColorMode}
     />
   );

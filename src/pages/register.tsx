@@ -1,4 +1,4 @@
-import { Input, Box, Flex, Button, Link, Text } from '@chakra-ui/react';
+import { Box, Flex, Button, Link, Text } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { InputField } from '../components/InputField';
 import { Formik, Form } from 'formik';
@@ -58,11 +58,21 @@ const Register = ({}: RegisterProps) => {
               <InputField name="password" placeholder="Password" />
             </Box>
 
-            <Flex w="350px" mt="15px" justify="space-between">
-              <NextLink href="/login">
-                <Link>Already have an account?</Link>
-              </NextLink>
-              <Button colorScheme="blue" type="submit" isLoading={isSubmitting}>
+            <Flex w="350px" mt="15px" justify="space-between" align="center">
+              <Link href="/login">
+                <Button variant={'link'} colorScheme={'blue'}>
+                  Already have an account?
+                </Button>
+              </Link>
+              <Button
+                colorScheme={'pink'}
+                bg={'pink.400'}
+                _hover={{
+                  bg: 'pink.300',
+                }}
+                type="submit"
+                isLoading={isSubmitting}
+              >
                 Register
               </Button>
             </Flex>

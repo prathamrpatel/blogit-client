@@ -7,6 +7,9 @@ query Posts($take: Int!, $cursor: String) {
       createdAt
       updatedAt
       authorId
+      author {
+        username
+      }
     }
     hasMore
   }

@@ -1,5 +1,5 @@
 import { Post, useCurrentUserQuery } from '../generated/graphql';
-import { Box, Heading, Text, Flex } from '@chakra-ui/react';
+import { Box, Heading, Text, Flex, Center } from '@chakra-ui/react';
 import EditDeleteButtons from './EditDeleteButtons';
 
 interface SinglePostProps {
@@ -10,21 +10,23 @@ const SinglePost = ({ post }: SinglePostProps) => {
   const { data } = useCurrentUserQuery();
 
   return (
-    <Flex w="700px" mx="auto" direction="column" align="center">
+    <Center>
       {data?.currentUser?.id === post.authorId ? (
         <Flex mt="20px">
           <EditDeleteButtons postId={post.id} />
         </Flex>
       ) : null}
 
-      <Box mt="20px">
-        <Heading>{post.title}</Heading>
-      </Box>
+      <Flex direction="column" align="center">
+        <Box mt="20px">
+          <Heading>{post.title}</Heading>
+        </Box>
 
-      <Box mt="20px" w="700px" mb="20px">
-        <Text>{post.body}</Text>
-      </Box>
-    </Flex>
+        <Box mt="20px" w="700px" mb="20px">
+          <Text overflowWrap={'normal'}>{post.body}</Text>
+        </Box>
+      </Flex>
+    </Center>
   );
 };
 

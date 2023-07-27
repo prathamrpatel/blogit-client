@@ -3,14 +3,13 @@ import { Box, Button, Flex, Text } from '@chakra-ui/react';
 import { Form, Formik } from 'formik';
 import { useRouter } from 'next/router';
 import { InputField } from '../../../components/InputField';
-import NavigationBar from '../../../components/NavigationBar';
+import NavBar from '../../../components/NavBar/NavBar';
 import {
   usePostQuery,
   useUpdatePostMutation,
 } from '../../../generated/graphql';
 import { toErrorMap } from '../../../util/toErrorMap';
 import { useIsAuth } from '../../../util/useIsAuth';
-import createPost from '../../create-post';
 
 interface PostProps {}
 
@@ -73,7 +72,12 @@ const Post = ({}: PostProps) => {
             </Box>
 
             <Flex w="350px" mt="15px" justify="flex-end">
-              <Button colorScheme="blue" type="submit" isLoading={isSubmitting}>
+              <Button
+                colorScheme="pink"
+                bgColor={'pink.400'}
+                type="submit"
+                isLoading={isSubmitting}
+              >
                 Update
               </Button>
             </Flex>

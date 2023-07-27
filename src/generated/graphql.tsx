@@ -70,6 +70,7 @@ export type PaginatedPosts = {
 
 export type Post = {
   __typename?: 'Post';
+  author: User;
   authorId: Scalars['Int'];
   body: Scalars['String'];
   bodySnippet: Scalars['String'];
@@ -173,7 +174,7 @@ export type CurrentUserQuery = { __typename?: 'Query', currentUser?: { __typenam
 export type GetPostsByUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetPostsByUserQuery = { __typename?: 'Query', getPostsByUser: Array<{ __typename?: 'Post', id: number, title: string, bodySnippet: string, createdAt: any, updatedAt: any, authorId: number }> };
+export type GetPostsByUserQuery = { __typename?: 'Query', getPostsByUser: Array<{ __typename?: 'Post', id: number, title: string, bodySnippet: string, createdAt: any, updatedAt: any, authorId: number, author: { __typename?: 'User', username: string } }> };
 
 export type HelloQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -193,7 +194,7 @@ export type PostsQueryVariables = Exact<{
 }>;
 
 
-export type PostsQuery = { __typename?: 'Query', posts: { __typename?: 'PaginatedPosts', hasMore: boolean, posts: Array<{ __typename?: 'Post', id: number, title: string, bodySnippet: string, createdAt: any, updatedAt: any, authorId: number }> } };
+export type PostsQuery = { __typename?: 'Query', posts: { __typename?: 'PaginatedPosts', hasMore: boolean, posts: Array<{ __typename?: 'Post', id: number, title: string, bodySnippet: string, createdAt: any, updatedAt: any, authorId: number, author: { __typename?: 'User', username: string } }> } };
 
 
 export const CreatePostDocument = gql`
@@ -480,6 +481,9 @@ export const GetPostsByUserDocument = gql`
     createdAt
     updatedAt
     authorId
+    author {
+      username
+    }
   }
 }
     `;
@@ -592,6 +596,9 @@ export const PostsDocument = gql`
       createdAt
       updatedAt
       authorId
+      author {
+        username
+      }
     }
     hasMore
   }

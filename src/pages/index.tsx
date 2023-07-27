@@ -1,11 +1,15 @@
 import { Flex, Button } from '@chakra-ui/react';
-import NavigationBar from '../components/NavigationBar';
 import Post from '../components/Post';
-import { usePostsQuery } from '../generated/graphql';
+import { useCurrentUserQuery, usePostsQuery } from '../generated/graphql';
+import { NextPage } from 'next';
+import Welcome from '../components/Welcome';
+import NavBar from '../components/NavBar/NavBar';
+import BlogCard from '../components/BlogCard';
 
 interface IndexProps {}
 
-const Index = ({}: IndexProps) => {
+const Index: NextPage = ({}: IndexProps) => {
+  const { data: currentUserData } = useCurrentUserQuery();
   const { data, fetchMore } = usePostsQuery({
     variables: {
       take: 15,
@@ -14,36 +18,40 @@ const Index = ({}: IndexProps) => {
   });
 
   if (!data?.posts) {
+    // Use the UI 404 template
     return <div>posts could not be loaded</div>;
   }
 
   return (
     <Flex direction="column">
-      <NavigationBar />
+      <NavBar />
 
-      <Flex direction="column" align="center">
-        {data.posts.posts.map((post) => (
-          <Post post={post} key={post.id} />
-        ))}
-
-        {data.posts.hasMore ? (
-          <Button
-            mt="40px"
-            mb="40px"
-            onClick={() => {
-              fetchMore({
-                variables: {
-                  take: 15,
-                  cursor:
-                    data.posts.posts[data.posts.posts.length - 1].createdAt,
-                },
-              });
-            }}
-          >
-            Load More
-          </Button>
-        ) : null}
-      </Flex>
+      {currentUserData?.currentUser ? (
+        <Flex direction="column" align="center">
+          {data.posts.posts.map((post) => (
+            <BlogCard post={post} key={post.id} />
+          ))}
+          {data.posts.hasMore ? (
+            <Button
+              mt="40px"
+              mb="40px"
+              onClick={() => {
+                fetchMore({
+                  variables: {
+                    take: 15,
+                    cursor:
+                      data.posts.posts[data.posts.posts.length - 1].createdAt,
+                  },
+                });
+              }}
+            >
+              Load More
+            </Button>
+          ) : null}
+        </Flex>
+      ) : (
+        <Welcome />
+      )}
     </Flex>
   );
 };
